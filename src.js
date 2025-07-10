@@ -36,7 +36,7 @@ function updateItemFields() {
         label.textContent = `Probability of success for item ${i}: `;
 
         const input = document.createElement("input");
-        input.type = "number";
+        input.type = "decimal";
         input.id = `prob-${i}`;
         input.name = `prob-${i}`;
         input.required = true;

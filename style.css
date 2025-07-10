@@ -70,7 +70,7 @@ label {
     font-weight: 600;
 }
 
-input[type="number"] {
+input[type="decimal"] {
     padding: 0.4rem;
     width: 100%;
     max-width: 250px;
@@ -110,14 +110,35 @@ canvas {
 
 /* === Responsive Stacking === */
 @media (max-width: 600px) {
-    form {
-        grid-template-columns: 1fr;
+    body {
+        font-size: 1rem;
+        padding: 0 0.75rem;
     }
 
-    .row.two-cols {
-        flex-direction: column;
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    input[type="decimal"] {
+        max-width: 100%;
+        font-size: 1.1rem;
+    }
+
+    .footer {
+        font-size: 0.9rem;
+    }
+
+    #successChart {
+        height: 45vh;
+        min-height: 250px;
     }
 }
+
 
 
 /* Two-column row for top input fields */
