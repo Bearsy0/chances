@@ -56,6 +56,7 @@ function updateItemFields() {
         container.appendChild(input);
         container.appendChild(percent);
         container.appendChild(span);
+        container.appendChild(document.createElement("br"));
     }
 }
 
@@ -76,7 +77,7 @@ function updateResult(i) {
 
     let html = "";
     if (chance !== null) {
-        html += `→ ${Math.round(chance * 10000) / 100}% chance of success in ${events} attempts<br>`;
+        html += `<strong style="color:rgb(79, 131, 226)">→ ${Math.round(chance * 10000) / 100}% chance of success </strong> in ${events} attempts<br>`;
     }
     html += `Number of attempts for 50% success: ${requiredTrials[0]}<br>`;
     html += `Number of attempts for 90% success: ${requiredTrials[1]}`;
