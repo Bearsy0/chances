@@ -40,8 +40,8 @@ function updateEstimation() {
 
     resultDiv.innerHTML = `
         <strong>Estimated probability:</strong><br>
-        Mean: <strong>${mean.toFixed(4)}</strong><br>
-        95% credible interval: <strong>[${lower.toFixed(4)}, ${upper.toFixed(4)}]</strong>
+        Mean: <strong>${mean.toFixed(4)*100}%</strong><br>
+        95% credible interval: <strong>[${lower.toFixed(4)*100}, ${upper.toFixed(4)*100}]%</strong>
     `;
 
     plotPosterior(alpha, beta, mean, lower, upper);
