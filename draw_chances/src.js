@@ -3,13 +3,12 @@ const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 let theme = prefersDark ? "dark" : "light";
 
 document.body.classList.toggle("dark", theme === "dark");
-toggleButton.textContent = theme === "dark" ? "☀️" : "🌙";
 
 toggleButton.addEventListener("click", () => {
     const isDark = document.body.classList.toggle("dark");
-    toggleButton.textContent = isDark ? "☀️" : "🌙";
     updateAllResults();
 });
+
 
 const itemsInput = document.getElementById("items");
 const eventsInput = document.getElementById("events");

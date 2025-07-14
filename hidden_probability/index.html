@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Hidden Probability Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4CYLGD6W1S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4CYLGD6W1S');
+    </script>
+
+</head>
+
+<body>
+    <h1>Hidden Probability Calculator</h1>
+    <button id="toggle-dark" aria-label="Toggle dark mode">Toggle Dark Mode</button>
+    <button onClick="location.href='derivation.html'">Derivation</button>
+    <br><br>
+    <form id="prob">
+        <div class="row two-cols">
+            <div class="form-group">
+                <label for="events">Number of Attempts:</label>
+                <input type="decimal" id="events" name="events" required>
+            </div>
+            <div class="form-group">
+                <label for="success">Number of Successes:</label>
+                <input type="decimal" id="success" name="success" required>
+            </div>
+        </div>
+    </form>
+
+    <div id="result">
+        <strong>Estimated probability:</strong>
+    </div>
+
+    <canvas id="successChart" style="width: 100%; height: 600px;"></canvas>
+
+    <script src="src.js"></script>
+
+    <footer class="footer">
+        <p>&copy; 2025 Bearsy
+        <a href="https://github.com/Bearsy0" target="_blank" aria-label="GitHub Repo">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="24" height="24" class="github-img">
+        </a>
+        </p>
+    </footer>
+
+</body>

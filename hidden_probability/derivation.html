@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hidden Probability Estimation</title>
+  <link rel="stylesheet" href="https://latex.now.sh/style.css">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="latex">
+
+  <h1>Bayesian Inference: Hidden Success Probability</h1>
+  <button id="dark-mode-toggle">Toggle dark mode</button>
+  <button onClick="location.href='index.html'">Back to Calculator</button>
+
+  <p>
+    Suppose we have \( n \) independent Bernoulli trials with unknown probability of success \( p \), and we observe:
+  </p>
+  <ul>
+    <li>\( s \) successes</li>
+    <li>\( f \) failures</li>
+    <li>of course, enforcing the two conditions \( n \equiv s + f\) and \( s, f \in \mathbb{Z}_{>0} \)</li>
+  </ul>
+
+  <h2>1. Likelihood</h2>
+  <p>
+    Each trial has probability \( p \) of success and probability of \( 1 - p \) failure. The probability \( s \) successes over \( n \) trials follow a <a href="https://en.wikipedia.org/wiki/Bernoulli_trial">binomial distribution</a>, which gives us the likelihood function:
+  </p>
+  \[
+   \mathcal{L}(s ~|~ p,f) = \binom{n}{s} \cdot p^s (1 - p)^f \propto p^s (1 - p)^f.
+  \]
+
+  <h2>2. Prior</h2>
+  <p>
+    Let us choose the <a href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a> because it is the <a href="https://en.wikipedia.org/wiki/Conjugate_prior">conjugate prior</a> to the binomial likelihood.
+  </p>
+  <p>
+    The Beta distribution is parameterised by the hyperparameters \( \alpha \) and \( \beta \). A nice property of the Beta distribution is that when the hyperparameters \( (\alpha, \beta) = (1, 1) \), the Beta distribution corresponds to a Uniform distribution over \( [0, 1] \). Thus, our prior is:
+  </p>
+  \[
+    \pi(p) = \frac{p^{\alpha - 1} (1 - p)^{\beta - 1}}{\text{B}(\alpha, \beta)} \propto p^{\alpha - 1} (1 - p)^{\beta - 1}
+  \]
+  <p>
+    where \( \text{B}(\alpha, \beta) \) is the Beta function, defined as in terms of the <a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma (\( \Gamma \)) function</a> as:
+  </p>
+  \[
+    \text{B}(\alpha, \beta) = \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}.
+  \]
+
+  <h2>3. Posterior</h2>
+  <p>
+    Using Bayes’ Theorem, we can estimate the posterior distribution of \( p \) given the data:
+  </p>
+  \[
+    \mathcal{P}(p ~|~ s,f) = \mathcal{L}(s ~|~ p,f) \cdot \pi(p) \propto p^{s + \alpha - 1} (1 - p)^{f + \beta - 1}.
+  \]
+  <p>
+    Since \( \mathcal{P} \propto p^s (1 - p)^f \) is a Beta distribution, we readily have the normalisation constant (the Beta function as discussed above). Thus, the posterior distribution is:
+  </p>
+  \[
+    \boxed{\mathcal{P}(p ~|~ s,f; \alpha, \beta) = \mathrm{Beta}(s + \alpha, f + \beta)}.
+  \]
+  <p>
+    Now, suppose we choose \( (\alpha, \beta) = (1,1) \) for an uninformative Uniform prior. Now, we can readily use known properties of the <a href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a> to give us the expectation value and other statistics in terms of successes and failures, such as:
+  </p>
+  <ul>
+    <li><strong>Expectation Value:</strong>
+      \[
+        \mathbb{E}[p ~|~ s,f] = \frac{s + 1}{s + f + 2}
+      \]
+    </li>
+    <li><strong>Median:</strong>
+      \[
+        \text{Median} \approx \frac{s + \frac{2}{3}}{s + f + \frac{4}{3}}
+      \]
+    </li>
+    <li><strong>Variance:</strong>
+      \[
+        \mathrm{Var}(p ~|~ s) = \frac{(s + 1)(f + 1)}{(s + f + 2)^2 (s + f + 3)}
+      \]
+    </li>
+  </ul>
+  <p>
+    Of course, these results can be generalised to for any \( (\alpha, \beta) \) hyperparameters.
+  </p>
+  <footer class="footer">
+        <p>&copy; 2025 Bearsy
+        <a href="https://github.com/Bearsy0" target="_blank" aria-label="GitHub Repo">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="24" height="24" class="github-img">
+        </a>
+        </p>
+    </footer>
+</body>
+
+<script>
+    document
+  .querySelector("#dark-mode-toggle")
+  .addEventListener('click', () => {
+     document.body.classList.toggle("latex-dark");
+  });
+</script>
+</html>

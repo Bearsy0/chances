@@ -44,17 +44,25 @@ p {
 }
 
 /* === Toggle Button === */
-#toggle-dark {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
+button {
+    background-color: var(--card-bg);
     color: var(--fg);
-    transition: color 0.3s;
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+    box-shadow: 0 2px 6px var(--shadow);
 }
-#toggle-dark:hover {
-    opacity: 0.7;
+
+button:hover,
+button:focus {
+    background-color: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    outline: none;
 }
 
 /* === Form Layout === */
